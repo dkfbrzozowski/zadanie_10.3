@@ -6,6 +6,7 @@
 	width: 640px;
 	height: 440px;
 	position: relative;
+	overflow: hidden;
 }
 #carousel ul {
 	width: 6400px;
