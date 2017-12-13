@@ -25,9 +25,9 @@ $(function() {
 	//============
 	//set interval
 
-	slideInterval = setInterval(changeSlide, 3000);
+	slideInterval = setInterval(changeNextSlide, 3000);
 
-	function changeSlide() {
+	function changeNextSlide() {
 		carouselList.animate({"margin-left": -640}, 500, moveFirstSlide);
 	};
 	
@@ -35,7 +35,7 @@ $(function() {
 		var firstItem = carouselList.find("li:first"),
 			lastItem = carouselList.find("li:last");
 		lastItem.after(firstItem);
-		carouselList.css({marginLeft:0});
+		carouselList.css({"marginLeft": 0});
 	};
 
 	//======================
@@ -44,34 +44,19 @@ $(function() {
 
 	carouselRight.click(function() {
 		clearInterval(slideInterval);
-		changeSlide();
-		setInterval(changeSlide, 3000);
+		changeNextSlide();
 	});
 
-
-/*	
-	var carouselList = $("#carousel ul"),
-		setTimeInterval,
-		slideWidth = 640,
-		animationTime = 1000;
-
-	
-	$('#right').click(function() {
-		clearInterval(setTimeInterval);
-		changeSlide();
-		setSlideInterval();
+	carouselLeft.click(function() {
+		clearInterval(slideInterval);
+		carouselList.animate({"margin-left": 640}, 500, moveLastSlide);
 	});
 
-	$('#left').click(changeSlideLeft);
-		function changeSlideLeft() {
-		clearInterval(setTimeInterval);
-		moveFirstSlideLeft();
-		carouselList.animate({'marginLeft':0}, animationTime, setSlideInterval);
+	function moveLastSlide() {
+		var firstItem = carouselList.find("li:first"),
+			lastItem = carouselList.find("li:last");
+		firstItem.before(lastItem);
+		carouselList.css({"marginLeft": 0});
 	};
 
-	function moveFirstSlideLeft() {
-		firstItem.before(lastItem);
-		carouselList.css({'marginLeft':-slideWidth});
-	}; 
-*/
 });
