@@ -25,7 +25,7 @@ $(function() {
 	//============
 	//set interval
 
-	slideInterval = setInterval(changeNextSlide, 3000);
+	var slideInterval = setInterval(changeNextSlide, 3000);
 
 	function changeNextSlide() {
 		carouselList.animate({"margin-left": -640}, 500, moveFirstSlide);
@@ -45,11 +45,13 @@ $(function() {
 	carouselRight.click(function() {
 		clearInterval(slideInterval);
 		changeNextSlide();
+		slideInterval = setInterval(changeNextSlide, 3000);
 	});
 
 	carouselLeft.click(function() {
 		clearInterval(slideInterval);
 		carouselList.animate({"margin-left": 640}, 500, moveLastSlide);
+		slideInterval = setInterval(changeNextSlide, 3000);
 	});
 
 	function moveLastSlide() {
