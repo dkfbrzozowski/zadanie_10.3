@@ -25,7 +25,7 @@ $(function() {
 	//============
 	//set interval
 
-	var slideInterval = setInterval(changeNextSlide, 3000);
+	slideInterval = setInterval(changeNextSlide, 3000);
 
 	function changeNextSlide() {
 		carouselList.animate({"margin-left": -640}, 500, moveFirstSlide);
@@ -38,7 +38,7 @@ $(function() {
 		carouselList.css({"marginLeft": 0});
 	};
 
-	//======================
+	//==============
 	//set navigation - right (po kliknięciu resetujemy interval następnie 
 	//uruchamiamy przewinięcie na następny slajd i ponownie ustawiamy interval)
 
