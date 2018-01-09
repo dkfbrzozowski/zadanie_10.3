@@ -17,48 +17,32 @@ $(function() {
 		moveSlider(target);
 	});
 
+	carouselRight.click(function() {
+		target = menuDots.siblings('.active').index();
+		target == menuDots.length - 1 ? target = 0 : target += 1;
+		moveSlider(target);
+	})
+
+	carouselLeft.click(function(){
+		target = menuDots.siblings('.active').index();
+		target == 0 ? target = menuDots.length - 1 : target -= 1;
+		moveSlider(target);
+	})
+
 	function moveSlider(target) {
 		carouselList.stop().animate({"left": -640 * target});
 		menuDots.removeClass("active").eq(target).addClass("active");
 	};
 
-	//============
-	//set interval
-
-	slideInterval = setInterval(changeNextSlide, 3000);
-
-	function changeNextSlide() {
-		carouselList.animate({"margin-left": -640}, 500, moveFirstSlide);
+	function autoChangeSlide() {
+		target = menuDots.siblings('.active').index();
+		target == menuDots.length - 1 ? target = 0 : target += 1;
+		moveSlider(target);
 	};
-	
-	function moveFirstSlide() {
-		var firstItem = carouselList.find("li:first"),
-			lastItem = carouselList.find("li:last");
-		lastItem.after(firstItem);
-		carouselList.css({"marginLeft": 0});
-	};
+	var autoMove = setInterval(function(){autoChangeSlide();}, 3000);
 
-	//==============
-	//set navigation - right (po kliknięciu resetujemy interval następnie 
-	//uruchamiamy przewinięcie na następny slajd i ponownie ustawiamy interval)
-
-	carouselRight.click(function() {
-		clearInterval(slideInterval);
-		changeNextSlide();
-		slideInterval = setInterval(changeNextSlide, 3000);
-	});
-
-	carouselLeft.click(function() {
-		clearInterval(slideInterval);
-		carouselList.animate({"margin-left": 640}, 500, moveLastSlide);
-		slideInterval = setInterval(changeNextSlide, 3000);
-	});
-
-	function moveLastSlide() {
-		var firstItem = carouselList.find("li:first"),
-			lastItem = carouselList.find("li:last");
-		firstItem.before(lastItem);
-		carouselList.css({"marginLeft": 0});
-	};
-
+	function resetInterval() {
+		clearInterval(autoMove);
+		var autoMove = setInterval(function(){autoChangeSlide();}, 3000);
+	}
 });
