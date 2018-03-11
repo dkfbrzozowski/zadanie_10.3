@@ -39,10 +39,10 @@ $(function() {
 		target == menuDots.length - 1 ? target = 0 : target += 1;
 		moveSlider(target);
 	};
-	var autoMove = setInterval(function(){autoChangeSlide();}, 3000);
+	// var autoMove = setInterval(function(){autoChangeSlide();}, 3000);
 
-	function resetInterval() {
-		clearInterval(autoMove);
-		var autoMove = setInterval(function(){autoChangeSlide();}, 3000);
-	}
+	// function resetInterval() {
+	// 	clearInterval(autoMove);
+	// 	var autoMove = setInterval(function(){autoChangeSlide();}, 3000);
+	// }
 });
